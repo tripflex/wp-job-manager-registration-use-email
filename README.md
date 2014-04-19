@@ -1,10 +1,10 @@
 # WP Job Manager Registration Use Email #
-**Contributors:** tripflex
-**Donate link:**http://gittip.com/tripflex
-**Tags:** registration, email, user, jobify, job manager
-**Requires at least:** 3.8
-**Tested up to:** 3.9
-**Stable tag:** 1.0
++ **Contributors:** tripflex
++ **Donate link:**http://gittip.com/tripflex
++ **Tags:** registration, email, user, jobify, job manager
++ **Requires at least:** 3.8
++ **Tested up to:** 3.9
++ **Stable tag:** 1.0
 
 Use email address as username when a new user registers with WP Job Manager. Compatible with Jobify.
 
