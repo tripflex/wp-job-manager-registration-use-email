@@ -7,6 +7,8 @@
  * Author URI:  http://smyl.es
  * Version:     1.0
  * Text Domain: job_manager_reg_use_email
+ * GitHub Plugin URI: tripflex/wp-job-manager-reg-use-email
+ * GitHub Branch:   master
  * @Last Modified by:   Myles McNamara
  * @Last Modified time: 2014-04-19 16:52:09
  */
