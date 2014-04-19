@@ -1,16 +1,16 @@
 # WP Job Manager Registration Use Email #
-Contributors: tripflex
-Donate link:http://gittip.com/tripflex
-Tags: registration, email, user, jobify, job manager
-Requires at least: 3.8
-Tested up to: 3.9
-Stable tag: 1.0
+**Contributors:** tripflex
+**Donate link:**http://gittip.com/tripflex
+**Tags:** registration, email, user, jobify, job manager
+**Requires at least:** 3.8
+**Tested up to:** 3.9
+**Stable tag:** 1.0
 
 Use email address as username when a new user registers with WP Job Manager. Compatible with Jobify.
 
 ## Description ##
 
-This plugin will use the email address as the username whenever someone registers through WP Job Manager.  This will also work with any other plugins or themes that use the \`job\_manager\_create\_account\_data\` filter.
+This plugin will use the email address as the username whenever someone registers through WP Job Manager.  This will also work with any other plugins or themes that use the `job_manager_create_account_data` filter.
 
 The Jobify theme has been confirmed and tested to work correctly with this plugin.
 
@@ -43,8 +43,7 @@ Or contact me at myles@smyl.es
 
 ## Screenshots ##
 
-![](https://smyl.es/img/Selection-1169x711-99.png)
-
+![](https://smyl.es/img/wpjmrue-screenshot-1.png)
 Enable from WP Job Manager settings "Job Submission" tab
 
 ## Installation ##
