@@ -1,6 +1,6 @@
 # WP Job Manager Registration Use Email #
 + **Contributors:** tripflex
-+ **Donate link:**http://gittip.com/tripflex
++ **Donate link:** http://gittip.com/tripflex
 + **Tags:** registration, email, user, jobify, job manager
 + **Requires at least:** 3.8
 + **Tested up to:** 3.9
