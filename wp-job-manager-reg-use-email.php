@@ -7,8 +7,8 @@
  * Author URI:  http://smyl.es
  * Version:     1.0
  * Text Domain: job_manager_reg_use_email
- * @Last Modified by:   myles
- * @Last Modified time: 2014-02-10 16:45:19
+ * @Last Modified by:   Myles McNamara
+ * @Last Modified time: 2014-04-19 16:52:09
  */
 
 // Exit if accessed directly
@@ -55,7 +55,11 @@ class WP_Job_Manager_Register_Use_Email {
 
 	public function job_manager_change_username ( $fields ) {
 		if(job_manager_enable_registration_use_email()){
+//			Store username in tmp variable so we can change it and still have the original value
+			$username_tmp = $fields['user_login'];
 			$fields['user_login'] = $fields['user_email'];
+			$fields['display_name'] = $username_tmp;
+			$fields['nickname'] = $username_tmp;
 		}
 
 		return $fields;
