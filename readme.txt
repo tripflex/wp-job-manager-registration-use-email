@@ -4,7 +4,7 @@ Donate link: http://gittip.com/tripflex
 Tags: registration, email, user, jobify, job manager
 Requires at least: 3.8
 Tested up to: 3.9
-Stable tag: 1.0
+Stable tag: 1.0.0
 
 Use email address as username when a new user registers with WP Job Manager. Compatible with Jobify.
 
@@ -13,6 +13,8 @@ Use email address as username when a new user registers with WP Job Manager. Com
 This plugin will use the email address as the username whenever someone registers through WP Job Manager.  This will also work with any other plugins or themes that use the `job_manager_create_account_data` filter.
 
 The Jobify theme has been confirmed and tested to work correctly with this plugin.
+
+* note: * using email as username is disabled by default, you must enable it under the WP Job Manager settings page.  There is a link to the page when you activate this plugin.
 
 = Features =
 * Use email as username
