@@ -11,7 +11,7 @@
  * GitHub Plugin URI: tripflex/wp-job-manager-registration-use-email
  * GitHub Branch:   master
  * @Last Modified by:   Myles McNamara
- * @Last Modified time: 2014-05-03 17:42:48
+ * @Last Modified time: 2014-05-03 17:54:38
  */
 
 // Exit if accessed directly
@@ -26,6 +26,11 @@ if( ! defined( 'JOB_MANAGER_REGISTRATION_USE_EMAIL' ) ) {
 class WP_Job_Manager_Registration_Use_Email {
 	private static $instance;
 
+	/**
+	 * @var      string
+	 */
+	protected $plugin_slug = 'wp-job-manager-registration-use-email';
+
 	public static function instance() {
 		if ( ! isset ( self::$instance ) ) {
 			self::$instance = new self;
@@ -39,6 +44,7 @@ class WP_Job_Manager_Registration_Use_Email {
 		add_filter( 'job_manager_settings', array( $this, 'job_manager_settings' ) );
 		add_filter( 'job_manager_create_account_data', array( $this, 'job_manager_change_username' ) );
 		add_filter( 'gettext', array( $this, 'change_username_label' ));
+		add_filter( 'plugin_row_meta', array( $this, 'add_plugin_row_meta'), 10, 4 );
 	}
 
 	public static function plugin_activate() {
@@ -59,11 +65,22 @@ class WP_Job_Manager_Registration_Use_Email {
 	}
 
 	public function change_username_label($text){
-	        switch ( $text ) {
-	                case 'Username' : $text = __( 'Username or Email', 'textdomain' );
-	                break;
-	        }
-	        return $text;
+		if(job_manager_enable_registration_use_email()) {
+			switch ( $text ) {
+				case 'Username' :
+					$text = __( 'Username or Email', 'textdomain' );
+					break;
+			}
+		}
+		return $text;
+	}
+
+	public function add_plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
+		if ( $this->plugin_slug . '/' . $this->plugin_slug . '.php' == $plugin_file ) {
+			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', __( 'http://github.com/tripflex/' . $this->plugin_slug, $this->plugin_slug), __( 'GitHub', $this->plugin_slug ) );
+			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', __( 'https://www.transifex.com/projects/p/' . $this->plugin_slug . '/resource/' . $this->plugin_slug  . '/', $this->plugin_slug ), __( 'Translate', $this->plugin_slug ) );
+		}
+		return $plugin_meta;
 	}
 
 	public function job_manager_settings( $settings ) {
@@ -73,7 +90,7 @@ class WP_Job_Manager_Registration_Use_Email {
 			'std'        => '0',
 			'label'      => __( 'Registration Username', 'wp-job-manager' ),
 			'cb_label'   => __( 'Use email as username', 'wp-job-manager' ),
-			'desc'       => __( 'Choose whether to use the email address as the username when a new user registers.', 'wp-job-manager' ),
+			'desc'       => __( 'Choose whether to use the email address as the username when a new user registers.  Will also change <code>Username</code> on login forms to <code>Username or Email</code>', 'wp-job-manager' ),
 			'type'       => 'checkbox',
 			'attributes' => array()
 		);
