@@ -64,6 +64,7 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 * April 19, 2014
 New Feature: Change "Username" to "Username or Email" on login forms
 Update to semantic versioning
+Added GitHub and Translation links to plugin page
 
 = 1.0 =
 * April 19, 2014
