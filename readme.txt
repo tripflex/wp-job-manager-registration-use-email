@@ -1,5 +1,5 @@
 === WP Job Manager Registration Use Email ===
-Contributors: tripflex
+Contributors: tripflex, fris
 Donate link: http://gittip.com/tripflex
 Tags: registration, email, user, jobify, job manager
 Requires at least: 3.8
