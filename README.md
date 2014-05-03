@@ -14,6 +14,8 @@ This plugin will use the email address as the username whenever someone register
 
 The Jobify theme has been confirmed and tested to work correctly with this plugin.
 
+**note:** using email as username is disabled by default, you must enable it under the WP Job Manager settings page.  There is a link to the page when you activate this plugin.
+
 ### Features ###
 * Use email as username
 * Set display_name and nickname as username that was going to be used
