@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Set the version of this plugin
 if( ! defined( 'JOB_MANAGER_REGISTRATION_USE_EMAIL' ) ) {
-	define( 'JOB_MANAGER_REGISTRATION_USE_EMAIL', '1.1.1' );
+	define( 'JOB_MANAGER_REGISTRATION_USE_EMAIL', '1.1.2' );
 } // end if
 
 class WP_Job_Manager_Registration_Use_Email {
