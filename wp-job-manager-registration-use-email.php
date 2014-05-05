@@ -96,15 +96,23 @@ class WP_Job_Manager_Registration_Use_Email {
 		);
 		$custom_username_label = array(
 			'name'       => 'job_manager_registration_use_email_custom_username_label',
-			'std'        => '0',
-			'label'      => __( 'Custom Username Label', self::$plugin_slug ),
+			'std'        => 'Username or Email',
+			'label'      => __( 'Login Username Label', self::$plugin_slug ),
 			'desc'       => __( 'By default when Use Email As Username is enabled, it will change every instance of <code>Username</code> to <code>Username or Email</code>, if you want to use a custom label, enter it here.', self::$plugin_slug ),
 			'type'       => 'input',
-			'attributes' => array('style' => 'display: none;')
+			'attributes' => array()
 		);
-		array_splice($settings['job_submission'][1], 1, 0, array());
 
-		$settings['job_submission'][1][1] = $use_email;
+		// Get all settings before index 1 in array
+		$settings_before = array_slice($settings['job_submission'][1], 0, 1);
+		// Get all settings after index 1 in array
+		$settings_after = array_slice($settings['job_submission'][1], 1);
+		// Add new setting option to enable using email
+		$settings_before[] = $use_email;
+		// Add new setting option to use custom username label
+		$settings_before[] = $custom_username_label;
+		// Merge everything back together
+		$settings['job_submission'][1] = array_merge($settings_before, $settings_after);
 
 		return $settings;
 	}
