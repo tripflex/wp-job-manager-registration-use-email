@@ -6,12 +6,12 @@
  * Author:      Myles McNamara
  * Contributors: Chris McCoy
  * Author URI:  http://smyl.es
- * Version:     1.1.0
+ * Version:     1.1.1
  * Text Domain: job_manager_registration_use_email
  * GitHub Plugin URI: tripflex/wp-job-manager-registration-use-email
  * GitHub Branch:   master
  * @Last Modified by:   Myles McNamara
- * @Last Modified time: 2014-05-03 17:54:38
+ * @Last Modified time: 2014-05-05 19:15:29
  */
 
 // Exit if accessed directly
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Set the version of this plugin
 if( ! defined( 'JOB_MANAGER_REGISTRATION_USE_EMAIL' ) ) {
-	define( 'JOB_MANAGER_REGISTRATION_USE_EMAIL', '1.1.0' );
+	define( 'JOB_MANAGER_REGISTRATION_USE_EMAIL', '1.1.1' );
 } // end if
 
 class WP_Job_Manager_Registration_Use_Email {
@@ -94,10 +94,14 @@ class WP_Job_Manager_Registration_Use_Email {
 			'type'       => 'checkbox',
 			'attributes' => array()
 		);
-
-		array_splice($settings['job_submission'][1], 1, 0, array());
-
-		$settings['job_submission'][1][1] = $use_email;
+		// Get all settings before index 1 in array
+		$settings_before = array_slice($settings['job_submission'][1], 0, 1);
+		// Get all settings after index 1 in array
+		$settings_after = array_slice($settings['job_submission'][1], 1);
+		// Add new settings
+		$settings_before[] = $use_email;
+		// Merge everything back together
+		$settings['job_submission'][1] = array_merge($settings_before, $settings_after);
 
 		return $settings;
 	}
