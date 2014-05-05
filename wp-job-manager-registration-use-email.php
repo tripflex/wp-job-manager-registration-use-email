@@ -6,7 +6,7 @@
  * Author:      Myles McNamara
  * Contributors: Chris McCoy
  * Author URI:  http://smyl.es
- * Version:     1.1.0
+ * Version:     1.2.0
  * Text Domain: job_manager_registration_use_email
  * GitHub Plugin URI: tripflex/wp-job-manager-registration-use-email
  * GitHub Branch:   master
@@ -29,7 +29,7 @@ class WP_Job_Manager_Registration_Use_Email {
 	/**
 	 * @var      string
 	 */
-	protected $plugin_slug = 'wp-job-manager-registration-use-email';
+	public static $plugin_slug = 'wp-job-manager-registration-use-email';
 
 	public static function instance() {
 		if ( ! isset ( self::$instance ) ) {
@@ -52,7 +52,7 @@ class WP_Job_Manager_Registration_Use_Email {
 			add_option('Job_Manager_Registration_Use_Email', JOB_MANAGER_REGISTRATION_USE_EMAIL );
 			$html = '<div class="updated">';
 			$html .= '<p>';
-			$html .= __( '<b>Hooray!</b> Using email as username is ready to go, but you have to enable it <a href="edit.php?post_type=job_listing&page=job-manager-settings#settings-job_submission">on this page</a> under "Job Submission".', 'job_manager_reg_use_email' );
+			$html .= __( '<b>Hooray!</b> Using email as username is ready to go, but you have to enable it <a href="edit.php?post_type=job_listing&page=job-manager-settings#settings-job_submission">on this page</a> under "Job Submission".', self::$plugin_slug );
 			$html .= '</p>';
 			$html .= '</div>';
 
@@ -68,7 +68,7 @@ class WP_Job_Manager_Registration_Use_Email {
 		if(job_manager_enable_registration_use_email()) {
 			switch ( $text ) {
 				case 'Username' :
-					$text = __( 'Username or Email', 'textdomain' );
+					$text = __( 'Username or Email', self::$plugin_slug );
 					break;
 			}
 		}
@@ -76,9 +76,9 @@ class WP_Job_Manager_Registration_Use_Email {
 	}
 
 	public function add_plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
-		if ( $this->plugin_slug . '/' . $this->plugin_slug . '.php' == $plugin_file ) {
-			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', __( 'http://github.com/tripflex/' . $this->plugin_slug, $this->plugin_slug), __( 'GitHub', $this->plugin_slug ) );
-			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', __( 'https://www.transifex.com/projects/p/' . $this->plugin_slug . '/resource/' . $this->plugin_slug  . '/', $this->plugin_slug ), __( 'Translate', $this->plugin_slug ) );
+		if ( self::$plugin_slug . '/' . self::$plugin_slug . '.php' == $plugin_file ) {
+			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', __( 'http://github.com/tripflex/' . self::$plugin_slug, self::$plugin_slug), __( 'GitHub', self::$plugin_slug ) );
+			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', __( 'https://www.transifex.com/projects/p/' . self::$plugin_slug . '/resource/' . self::$plugin_slug  . '/', self::$plugin_slug ), __( 'Translate', self::$plugin_slug ) );
 		}
 		return $plugin_meta;
 	}
@@ -88,13 +88,20 @@ class WP_Job_Manager_Registration_Use_Email {
 		$use_email = array(
 			'name'       => 'job_manager_enable_registration_use_email',
 			'std'        => '0',
-			'label'      => __( 'Registration Username', 'wp-job-manager' ),
-			'cb_label'   => __( 'Use email as username', 'wp-job-manager' ),
-			'desc'       => __( 'Choose whether to use the email address as the username when a new user registers.  Will also change <code>Username</code> on login forms to <code>Username or Email</code>', 'wp-job-manager' ),
+			'label'      => __( 'Registration Username', self::$plugin_slug ),
+			'cb_label'   => __( 'Use email as username', self::$plugin_slug ),
+			'desc'       => __( 'Choose whether to use the email address as the username when a new user registers.  Will also change <code>Username</code> on login forms to <code>Username or Email</code>', self::$plugin_slug ),
 			'type'       => 'checkbox',
 			'attributes' => array()
 		);
-
+		$custom_username_label = array(
+			'name'       => 'job_manager_registration_use_email_custom_username_label',
+			'std'        => '0',
+			'label'      => __( 'Custom Username Label', self::$plugin_slug ),
+			'desc'       => __( 'By default when Use Email As Username is enabled, it will change every instance of <code>Username</code> to <code>Username or Email</code>, if you want to use a custom label, enter it here.', self::$plugin_slug ),
+			'type'       => 'input',
+			'attributes' => array()
+		);
 		array_splice($settings['job_submission'][1], 1, 0, array());
 
 		$settings['job_submission'][1][1] = $use_email;
