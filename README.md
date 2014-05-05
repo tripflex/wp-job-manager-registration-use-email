@@ -4,7 +4,7 @@
 + **Tags:** registration, email, user, jobify, job manager
 + **Requires at least:** 3.8
 + **Tested up to:** 3.9
-+ **Stable tag:** 1.1.0
++ **Stable tag:** 1.2.0
 
 Use email address as username when a new user registers with WP Job Manager. Compatible with Jobify.
 
