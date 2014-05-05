@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Set the version of this plugin
 if( ! defined( 'JOB_MANAGER_REGISTRATION_USE_EMAIL' ) ) {
-	define( 'JOB_MANAGER_REGISTRATION_USE_EMAIL', '1.1.0' );
+	define( 'JOB_MANAGER_REGISTRATION_USE_EMAIL', '1.2.0' );
 } // end if
 
 class WP_Job_Manager_Registration_Use_Email {
@@ -100,7 +100,7 @@ class WP_Job_Manager_Registration_Use_Email {
 			'label'      => __( 'Custom Username Label', self::$plugin_slug ),
 			'desc'       => __( 'By default when Use Email As Username is enabled, it will change every instance of <code>Username</code> to <code>Username or Email</code>, if you want to use a custom label, enter it here.', self::$plugin_slug ),
 			'type'       => 'input',
-			'attributes' => array()
+			'attributes' => array('style' => 'display: none;')
 		);
 		array_splice($settings['job_submission'][1], 1, 0, array());
 
