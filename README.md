@@ -4,7 +4,7 @@
 + **Tags:** registration, email, user, jobify, job manager
 + **Requires at least:** 3.8
 + **Tested up to:** 3.9
-+ **Stable tag:** 1.1.0
++ **Stable tag:** 1.1.1
 
 Use email address as username when a new user registers with WP Job Manager. Compatible with Jobify.
 
@@ -60,6 +60,10 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 ## Frequently Asked Questions ##
 
 ## Changelog ##
+= 1.1.1 =
+* May 5, 2014
+BUG FIX: User role dropdown being removed on settings page
+
 **1.1.0** May 3, 2014
 *New Feature:* Change "Username" to "Username or Email" on login forms
 Changed to semantic versioning
