@@ -4,7 +4,7 @@ Donate link: http://gittip.com/tripflex
 Tags: registration, email, user, jobify, job manager
 Requires at least: 3.8
 Tested up to: 3.9
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 
 Use email address as username when a new user registers with WP Job Manager. Compatible with Jobify.
 
@@ -59,6 +59,9 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 == Frequently Asked Questions ==
 
 == Changelog ==
+= 1.1.2 =
+*May 5, 2014*
+Fix static notice issue, change add_option to update_option
 
 = 1.1.1 =
 * May 5, 2014
