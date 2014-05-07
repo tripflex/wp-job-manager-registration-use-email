@@ -43,8 +43,9 @@ Or contact me at myles@smyl.es
 
 ## Screenshots ##
 
-![](https://smyl.es/img/wpjmrue-screenshot-1.png)
-Enable from WP Job Manager settings "Job Submission" tab
+![](https://smyl.es/img/wpjm-reg-email-preview.gif)
+* Enable from WP Job Manager settings "Job Submission" tab
+* Enter custom label for username 
 
 ## Installation ##
 
