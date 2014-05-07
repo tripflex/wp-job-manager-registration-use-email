@@ -92,9 +92,9 @@ class WP_Job_Manager_Registration_Use_Email {
 
 	public function add_plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
 		if ( self::$plugin_slug . '/' . self::$plugin_slug . '.php' == $plugin_file ) {
-			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', __( 'http://github.com/tripflex/' . self::$plugin_slug, self::$plugin_slug ), __( 'GitHub', self::$plugin_slug ) );
-			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', __( 'http://wordpress.org/plugins/' . self::$plugin_slug, self::$plugin_slug ), __( 'Wordpress', self::$plugin_slug ) );
-			$plugin_meta[] = sprintf( '<a href="%s">%s</a>', __( 'https://www.transifex.com/projects/p/' . self::$plugin_slug . '/resource/' . self::$plugin_slug . '/', self::$plugin_slug ), __( 'Translate', self::$plugin_slug ) );
+			$plugin_meta[] = sprintf( '<a href="%s" target="_blank">%s</a>', __( 'http://github.com/tripflex/' . self::$plugin_slug, self::$plugin_slug ), __( 'GitHub', self::$plugin_slug ) );
+			$plugin_meta[] = sprintf( '<a href="%s" target="_blank">%s</a>', __( 'http://wordpress.org/plugins/' . self::$plugin_slug, self::$plugin_slug ), __( 'Wordpress', self::$plugin_slug ) );
+			$plugin_meta[] = sprintf( '<a href="%s" target="_blank">%s</a>', __( 'https://www.transifex.com/projects/p/' . self::$plugin_slug . '/resource/' . self::$plugin_slug . '/', self::$plugin_slug ), __( 'Translate', self::$plugin_slug ) );
 		}
 
 		return $plugin_meta;
