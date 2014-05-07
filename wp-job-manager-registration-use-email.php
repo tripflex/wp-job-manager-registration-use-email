@@ -15,8 +15,9 @@
  */
 
 // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) )
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
+}
 
 // Set the version of this plugin
 if ( ! defined( 'JOB_MANAGER_REGISTRATION_USE_EMAIL' ) ) {
@@ -33,18 +34,18 @@ class WP_Job_Manager_Registration_Use_Email {
 	public function __construct() {
 		add_action( 'admin_notices', array( $this, 'plugin_activate' ) );
 		add_filter( 'job_manager_settings', array(
-				$this,
-				'job_manager_settings'
-			) );
+			$this,
+			'job_manager_settings'
+		) );
 		add_filter( 'job_manager_create_account_data', array(
-				$this,
-				'job_manager_change_username'
-			) );
+			$this,
+			'job_manager_change_username'
+		) );
 		add_filter( 'gettext', array( $this, 'change_username_label' ) );
 		add_filter( 'plugin_row_meta', array(
-				$this,
-				'add_plugin_row_meta'
-			), 10, 4 );
+			$this,
+			'add_plugin_row_meta'
+		), 10, 4 );
 
 	}
 
@@ -75,8 +76,10 @@ class WP_Job_Manager_Registration_Use_Email {
 
 	public function change_username_label( $text ) {
 		if ( job_manager_enable_registration_use_email() ) {
-			$custom_label = get_option('job_manager_registration_use_email_custom_username_label');
-			if(!$custom_label) $custom_label = "Username or Email";
+			$custom_label = get_option( 'job_manager_registration_use_email_custom_username_label' );
+			if ( ! $custom_label ) {
+				$custom_label = "Username or Email";
+			}
 			switch ( $text ) {
 				case 'Username' :
 					$text = __( $custom_label, self::$plugin_slug );
@@ -116,9 +119,9 @@ class WP_Job_Manager_Registration_Use_Email {
 			'desc'       => __( 'By default when Use Email As Username is enabled, it will change every instance of <code>Username</code> to <code>Username or Email</code>, if you want to use a custom label, enter it here.', self::$plugin_slug ),
 			'type'       => 'input',
 			'attributes' => array(
-				'class'     => 'job_manager_registration_use_email_custom_username_label'
+				'class' => 'job_manager_registration_use_email_custom_username_label'
 			)
-	);
+		);
 
 		// Get all settings before index 1 in array
 		$settings_before = array_slice( $settings['job_submission'][1], 0, 1 );
@@ -157,11 +160,11 @@ function job_manager_enable_registration_use_email() {
 
 //register_activation_hook( __FILE__, array( 'WP_Job_Manager_Registration_Use_Email', 'plugin_activate' ) );
 register_deactivation_hook( __FILE__, array(
-		'WP_Job_Manager_Registration_Use_Email',
-		'plugin_deactivate'
-	) );
+	'WP_Job_Manager_Registration_Use_Email',
+	'plugin_deactivate'
+) );
 
 add_action( 'init', array(
-		'WP_Job_Manager_Registration_Use_Email',
-		'instance'
-	) );
+	'WP_Job_Manager_Registration_Use_Email',
+	'instance'
+) );
