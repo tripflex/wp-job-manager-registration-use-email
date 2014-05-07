@@ -1,25 +1,28 @@
 # WP Job Manager Registration Use Email #
-+ **Contributors:** tripflex
++ **Contributors:** tripflex, fris
 + **Donate link:** http://gittip.com/tripflex
-+ **Tags:** registration, email, user, jobify, job manager
++ **Tags:** registration, email, user, jobify, job manager, login, login label
 + **Requires at least:** 3.8
 + **Tested up to:** 3.9
 + **Stable tag:** 1.2.0
 
-Use email address as username when a new user registers with WP Job Manager. Compatible with Jobify.
+Use email address as username when a new user registers with WP Job Manager. Set custom label for `Username` on login pages. Compatible with Jobify.
 
 ## Description ##
 
 This plugin will use the email address as the username whenever someone registers through WP Job Manager.  This will also work with any other plugins or themes that use the `job_manager_create_account_data` filter.
 
+With release of version 1.2.0 you can now change the default label "Username" for all login screens to use a customized user-defined label.
+
 The Jobify theme has been confirmed and tested to work correctly with this plugin.
 
-**note:** using email as username is disabled by default, you must enable it under the WP Job Manager settings page.  There is a link to the page when you activate this plugin.
+* note: * using email as username is disabled by default, you must enable it under the WP Job Manager settings page.  There is a link to the page when you activate this plugin.
 
 ### Features ###
 * Use email as username
 * Set display_name and nickname as username that was going to be used
 * Replace "Username" with "Username or Email" on login forms
+* Set custom user-defined label for "Username" on login pages
 
 ### Requires ###
 * [WP Job Manager by Mike Jolley](http://mikejolley.com/projects/wp-job-manager/)
@@ -43,12 +46,10 @@ Or contact me at myles@smyl.es
 
 ## Screenshots ##
 
-![](https://smyl.es/img/wpjm-reg-email-preview.gif)
-* Enable from WP Job Manager settings "Job Submission" tab
-* Enter custom label for username
-
-![](https://smyl.es/img/Selection-445x460-99.png)
-* Wordpress Login Custom Label Preview
+![](screenshot-1.gif)
+Enable from WP Job Manager settings "Job Submission" tab
+![](screenshot-2.png)
+Login screen custom user-defined label preview
 
 ## Installation ##
 
@@ -64,10 +65,24 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 ## Frequently Asked Questions ##
 
 ## Changelog ##
-**1.1.0** May 3, 2014
-*New Feature:* Change "Username" to "Username or Email" on login forms
-Changed to semantic versioning
+### 1.2.0 ###
+*May 7, 2014*
+NEW FEATURE: Custom user-defined label to change "Username" on login pages
+
+### 1.1.2 ###
+*May 5, 2014*
+Fix static notice issue, change add_option to update_option
+
+### 1.1.1 ###
+*May 5, 2014*
+BUG FIX: User role dropdown being removed on settings page
+
+### 1.1.0 ###
+*May 3, 2014*
+New Feature: Change "Username" to "Username or Email" on login forms
+Update to semantic versioning
 Added GitHub and Translation links to plugin page
 
-**1.0**  April 19, 2014
+### 1.0 ###
+*April 19, 2014*
 First Release
