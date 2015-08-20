@@ -37,35 +37,6 @@ class WP_Job_Manager_Registration_Use_Email {
 	}
 
 	/**
-	 * Plugin Activation
-	 *
-	 *
-	 * @since @@version
-	 *
-	 */
-	public static function activate() {
-		if ( JOB_MANAGER_REGISTRATION_USE_EMAIL != get_option( 'Job_Manager_Registration_Use_Email' ) ) {
-			update_option( 'Job_Manager_Registration_Use_Email', JOB_MANAGER_REGISTRATION_USE_EMAIL );
-			$html = '<div class="updated">';
-			$html .= '<p>';
-			$html .= __( '<b>Hooray!</b> Using email as username is ready to go, but you have to enable it <a href="edit.php?post_type=job_listing&page=job-manager-settings#settings-job_submission">on this page</a> under "Job Submission".', 'wp-job-manager-registration-use-email' );
-			$html .= '</p>';
-			$html .= '</div>';
-
-			echo $html;
-		}
-	}
-
-	/**
-	 * Plugin Deactivation
-	 *
-	 *
-	 * @since @@version
-	 *
-	 */
-	public static function plugin_deactivate() { delete_option( 'Job_Manager_Registration_Use_Email' ); }
-
-	/**
 	 * Change Username Label
 	 *
 	 * Using native WordPress gettext translation handling, this will replace Username labels
@@ -231,6 +202,36 @@ class WP_Job_Manager_Registration_Use_Email {
 
 		return false;
 	}
+
+	/**
+	 * Plugin Activation
+	 *
+	 *
+	 * @since @@version
+	 *
+	 */
+	public static function activate() {
+
+		if( JOB_MANAGER_REGISTRATION_USE_EMAIL != get_option( 'Job_Manager_Registration_Use_Email' ) ) {
+			update_option( 'Job_Manager_Registration_Use_Email', JOB_MANAGER_REGISTRATION_USE_EMAIL );
+			$html = '<div class="updated">';
+			$html .= '<p>';
+			$html .= __( '<b>Hooray!</b> Using email as username is ready to go, but you have to enable it <a href="edit.php?post_type=job_listing&page=job-manager-settings#settings-job_submission">on this page</a> under "Job Submission".', 'wp-job-manager-registration-use-email' );
+			$html .= '</p>';
+			$html .= '</div>';
+
+			echo $html;
+		}
+	}
+
+	/**
+	 * Plugin Deactivation
+	 *
+	 *
+	 * @since @@version
+	 *
+	 */
+	public static function plugin_deactivate() { delete_option( 'Job_Manager_Registration_Use_Email' ); }
 
 	/**
 	 * Singleton Instance
