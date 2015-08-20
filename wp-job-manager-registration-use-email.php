@@ -179,11 +179,40 @@ class WP_Job_Manager_Registration_Use_Email {
 	 */
 	public function register_form_fields( $fields ) {
 		// Return fields as they were passed if use email is not enabled
-		if( ! job_manager_enable_registration_use_email() || $this->is_register_POST() ) return $fields;
+		if( ! job_manager_enable_registration_use_email() ) return $fields;
+		if( ! isset( $fields['creds'] ) || ! isset( $fields['creds']['nicename'] ) ) return $fields;
 
-		if( isset( $fields['creds'] ) && isset( $fields['creds']['nicename'] ) ) unset( $fields['creds']['nicename'] );
+		// Set required to false to prevent WP_Error on field being empty
+		$fields['creds']['nicename']['required'] = FALSE;
+
+		if( ! $this->is_register_POST() || $this->has_validation_errors( $fields ) ) {
+			unset($fields['creds']['nicename']);
+		}
 
 		return $fields;
+	}
+
+	/**
+	 * Check for Validation Errors in $_POST
+	 *
+	 *
+	 * @since @@version
+	 *
+	 * @param $field_groups
+	 *
+	 * @return bool
+	 */
+	function has_validation_errors( $field_groups ){
+
+		foreach( $field_groups as $group_key => $fields ) {
+			foreach( $fields as $key => $field ) {
+				// Handle role field exceptions as nothing selected has a value of "none"
+				if( $key == 'role' && $field['required'] && isset($_POST['role']) && $_POST['role'] == 'none' ) return true;
+				if( $field['required'] && ( ! isset($_POST) || ! isset($_POST[ $key ]) || empty($_POST[ $key ]) ) ) return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
