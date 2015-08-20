@@ -4,14 +4,17 @@
  * Plugin URI:  https://github.com/tripflex/wp-job-manager-registration-use-email
  * Description: Use email address as username when a new user registers
  * Author:      Myles McNamara
- * Contributors: Chris McCoy
+ * Contributors: Myles McNamara, Chris McCoy
  * Author URI:  http://smyl.es
- * Version:     1.2.0
+ * Version:     1.3.0
+ * Requires at least: 3.8
+ * Tested up to: 4.3
  * Text Domain: job_manager_registration_use_email
  * GitHub Plugin URI: tripflex/wp-job-manager-registration-use-email
  * GitHub Branch: master
+ *
  * @Last Modified by:   Myles McNamara
- * @Last Modified time: 2014-05-07 14:10:52
+ * @Last Modified time: 08-20-2015 15:04:52
  */
 
 // Exit if accessed directly
