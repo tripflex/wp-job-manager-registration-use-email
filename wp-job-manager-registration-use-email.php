@@ -28,9 +28,9 @@ class WP_Job_Manager_Registration_Use_Email {
 	private static $instance;
 
 	public function __construct() {
-		add_action( 'admin_notices', array( $this, 'plugin_activate' ) );
-		add_filter( 'job_manager_settings', array( $this, 'job_manager_settings' ) );
-		add_filter( 'job_manager_create_account_data', array( $this,  'job_manager_change_username') );
+		add_action( 'admin_notices', array( $this, 'activate' ) );
+		add_filter( 'job_manager_settings', array( $this, 'settings' ) );
+		add_filter( 'job_manager_create_account_data', array( $this,  'change_username') );
 		add_filter( 'gettext', array( $this, 'change_username_label' ) );
 		add_filter( 'plugin_row_meta', array( $this, 'add_plugin_row_meta'), 10, 4 );
 	}
@@ -42,7 +42,7 @@ class WP_Job_Manager_Registration_Use_Email {
 	 * @since @@version
 	 *
 	 */
-	public static function plugin_activate() {
+	public static function activate() {
 		if ( JOB_MANAGER_REGISTRATION_USE_EMAIL != get_option( 'Job_Manager_Registration_Use_Email' ) ) {
 			update_option( 'Job_Manager_Registration_Use_Email', JOB_MANAGER_REGISTRATION_USE_EMAIL );
 			$html = '<div class="updated">';
@@ -126,7 +126,7 @@ class WP_Job_Manager_Registration_Use_Email {
 	 *
 	 * @return mixed
 	 */
-	public function job_manager_settings( $settings ) {
+	public function settings( $settings ) {
 
 		wp_enqueue_script( 'job_manager_registration_use_email', plugins_url( '/wpjm-use-email.min.js', __FILE__ ), array( 'jquery' ) );
 
@@ -180,7 +180,7 @@ class WP_Job_Manager_Registration_Use_Email {
 	 *
 	 * @return mixed
 	 */
-	public function job_manager_change_username( $fields ) {
+	public function change_username( $fields ) {
 		if ( job_manager_enable_registration_use_email() ) {
 //			Store username in tmp variable so we can change it and still have the original value
 			$username_tmp           = $fields['user_login'];
@@ -218,6 +218,6 @@ function job_manager_enable_registration_use_email() {
 	return apply_filters( 'job_manager_enable_registration_use_email', get_option( 'job_manager_enable_registration_use_email' ) == 1 ? true : false );
 }
 
-//register_activation_hook( __FILE__, array( 'WP_Job_Manager_Registration_Use_Email', 'plugin_activate' ) );
+//register_activation_hook( __FILE__, array( 'WP_Job_Manager_Registration_Use_Email', 'activate' ) );
 register_deactivation_hook( __FILE__, array( 'WP_Job_Manager_Registration_Use_Email', 'plugin_deactivate' ) );
 add_action( 'init', array( 'WP_Job_Manager_Registration_Use_Email', 'instance' ) );
