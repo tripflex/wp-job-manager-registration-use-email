@@ -6,7 +6,7 @@
  * Author:      Myles McNamara
  * Contributors: Myles McNamara, Chris McCoy
  * Author URI:  http://smyl.es
- * Version:     1.3.0
+ * Version:     1.3.1
  * Requires at least: 3.8
  * Tested up to: 4.3
  * Text Domain: job_manager_registration_use_email
