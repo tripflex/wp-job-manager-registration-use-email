@@ -37,6 +37,22 @@ class WP_Job_Manager_Registration_Use_Email {
 		add_filter( 'register_form_fields', array($this, 'register_form_fields'), 9999 );
 		add_filter( 'gettext', array( $this, 'change_username_label' ) );
 		add_filter( 'plugin_row_meta', array( $this, 'add_plugin_row_meta'), 10, 4 );
+
+		remove_filter( 'authenticate', 'wp_authenticate_username_password', 20, 3 );
+		add_filter( 'authenticate', array( $this, 'wp_authenticate' ), 20, 3 );
+	}
+
+	function wp_authenticate( $user, $username, $password ) {
+
+		if( is_a( $user, 'WP_User' ) ) return $user;
+
+		if( ! empty( $username ) ) {
+			$username = str_replace( '&', '&amp;', stripslashes( $username ) );
+			$user     = get_user_by( 'email', $username );
+			if( isset($user, $user->user_login, $user->user_status) && 0 == (int) $user->user_status ) $username = $user->user_login;
+		}
+
+		return wp_authenticate_username_password( null, $username, $password );
 	}
 
 	/**
