@@ -31,6 +31,7 @@ class WP_Job_Manager_Registration_Use_Email {
 		add_action( 'admin_notices', array( $this, 'activate' ) );
 		add_filter( 'job_manager_settings', array( $this, 'settings' ) );
 		add_filter( 'job_manager_create_account_data', array( $this,  'change_username') );
+		add_filter( 'register_form_fields', array($this, 'register_form_fields'), 9999 );
 		add_filter( 'gettext', array( $this, 'change_username_label' ) );
 		add_filter( 'plugin_row_meta', array( $this, 'add_plugin_row_meta'), 10, 4 );
 	}
@@ -190,6 +191,45 @@ class WP_Job_Manager_Registration_Use_Email {
 		}
 
 		return $fields;
+	}
+
+	/**
+	 * Remove Username Field from Register Form
+	 *
+	 * If use email as username is enabled, this will remove the username field from any register forms
+	 * that use the register_form_fields filter with the username field key set as 'nicename'
+	 *
+	 *
+	 * @since @@version
+	 *
+	 * @param $fields
+	 *
+	 * @return mixed
+	 */
+	public function register_form_fields( $fields ) {
+		// Return fields as they were passed if use email is not enabled
+		if( ! job_manager_enable_registration_use_email() || $this->is_register_POST() ) return $fields;
+
+		if( isset( $fields['creds'] ) && isset( $fields['creds']['nicename'] ) ) unset( $fields['creds']['nicename'] );
+
+		return $fields;
+	}
+
+	/**
+	 * Check if current $_POST is for register form
+	 *
+	 *
+	 * @since @@version
+	 *
+	 * @return bool
+	 */
+	function is_register_POST(){
+
+		if( ! isset( $_POST ) ) return false;
+		if( isset( $_POST['job_manager_form'] ) && $_POST['job_manager_form'] == 'register' ) return true;
+		if( isset( $_POST['submit_register'] ) && $_POST['submit_register'] == __( 'Register' ) ) return true;
+
+		return false;
 	}
 
 	/**
