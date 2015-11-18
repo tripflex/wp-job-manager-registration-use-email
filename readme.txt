@@ -1,14 +1,14 @@
 === WP Job Manager Registration Use Email ===
 Contributors: tripflex, fris
-Donate link: http://gittip.com/tripflex
-Tags: wp job manager, job manager, registration, email, user, jobify, job manager, login, login label, tripflex
+Donate link: http://smyl.es/donate/
+Tags: wp job manager, job manager, registration, email, user, jobify, job manager, login, login label, tripflex, email login
 Requires at least: 3.8
-Tested up to: 4.3
-Stable tag: 1.3.1
+Tested up to: 4.3.1
+Stable tag: 1.3.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Use email address as username when a new user registers with WP Job Manager. Set custom label for `Username` on login pages. Compatible with Jobify (removes username from register form).
+Allow users to login with their email, as well as use email address as username when a new user registers with WP Job Manager. Set custom label for `Username` on entire site. Compatible with Jobify (removes username from register form).
 
 == Description ==
 
@@ -30,6 +30,7 @@ The Jobify theme has been confirmed and tested to work correctly with this plugi
 * Set custom user-defined label for "Username" on login pages
 * Removes Username field from WP Job Manager and Jobify Theme Registration Forms
 * Allow users to login with active email address (in case they change their email)
+* Compatible with WP Job Manager Resumes addon plugin
 
 = Requires =
 * [WP Job Manager by Mike Jolley](http://mikejolley.com/projects/wp-job-manager/)
@@ -70,6 +71,12 @@ Extract the zip file and just drop the contents in the wp-content/plugins/ direc
 == Frequently Asked Questions ==
 
 == Changelog ==
+
+= 1.3.2 =
+*November 18, 2015*
+New Feature: Fully compatible with WP Job Manager Resumes addon plugin
+Tweak: Removed Generate Username from Email setting when use email as username is enabled
+Tweak: Filter generate username from email to prevent Username field from showing on submit listing
 
 = 1.3.1 =
 *August 20, 2015*
