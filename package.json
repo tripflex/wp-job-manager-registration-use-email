@@ -1,0 +1,29 @@
+{
+  "name": "wp-job-manager-registration-use-email",
+  "title": "WP Job Manager Registration Use Email",
+  "version": "1.3.2",
+  "homepage": "http://wordpress.org/plugins/wp-job-manager-registration-use-email/",
+  "main": "Gruntfile.js",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-wp-readme-to-markdown": "^1.0.0",
+    "load-grunt-tasks": "^0.6.0"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.1.0"
+  },
+  "description": "+ **Contributors:** tripflex, fris + **Donate link:** http://gittip.com/tripflex + **Tags:** wp job manager, job manager, registration, email, user, jobify, job manager, login, login label, tripflex + **Requires at least:** 3.8 + **Tested up to:** 4.3 + **Stable tag:** 1.3.1",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tripflex/wp-job-manager-registration-use-email.git"
+  },
+  "author": "Myles McNamara",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/tripflex/wp-job-manager-registration-use-email/issues"
+  }
+}
