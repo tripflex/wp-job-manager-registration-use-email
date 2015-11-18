@@ -2,26 +2,26 @@
 /**
  * Plugin Name: WP Job Manager - Registration Use Email
  * Plugin URI:  https://github.com/tripflex/wp-job-manager-registration-use-email
- * Description: Use email address as username when a new user registers
+ * Description: Use email address as username when a new user registers, allow users to login with email address, and change Username wording to custom string
  * Author:      Myles McNamara
  * Contributors: Myles McNamara, Chris McCoy
  * Author URI:  http://smyl.es
- * Version:     1.3.1
+ * Version:     1.3.2
  * Requires at least: 3.8
- * Tested up to: 4.3
+ * Tested up to: 4.3.1
  * Text Domain: job_manager_registration_use_email
  * GitHub Plugin URI: tripflex/wp-job-manager-registration-use-email
  * GitHub Branch: master
  *
  * @Last Modified by:   Myles McNamara
- * @Last Modified time: 08-20-2015 15:04:52
+ * @Last Modified time: 11-18-2015 12:50:52
  */
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Set the version of this plugin
-if ( ! defined( 'JOB_MANAGER_REGISTRATION_USE_EMAIL' ) ) define( 'JOB_MANAGER_REGISTRATION_USE_EMAIL', '1.2.0' );
+if ( ! defined( 'JOB_MANAGER_REGISTRATION_USE_EMAIL' ) ) define( 'JOB_MANAGER_REGISTRATION_USE_EMAIL', '1.3.2' );
 
 class WP_Job_Manager_Registration_Use_Email {
 	/**
@@ -37,11 +37,46 @@ class WP_Job_Manager_Registration_Use_Email {
 		add_filter( 'register_form_fields', array($this, 'register_form_fields'), 9999 );
 		add_filter( 'gettext', array( $this, 'change_username_label' ) );
 		add_filter( 'plugin_row_meta', array( $this, 'add_plugin_row_meta'), 10, 4 );
+		add_filter( 'job_manager_generate_username_from_email', array( $this, 'username_from_email' ) );
 
 		remove_filter( 'authenticate', 'wp_authenticate_username_password', 20, 3 );
 		add_filter( 'authenticate', array( $this, 'wp_authenticate' ), 20, 3 );
 	}
 
+	/**
+	 * Return TRUE or FALSE to JM generate username from email
+	 *
+	 * If this plugin's settings are enabled, we use the WPJM filter to return TRUE for the generate username from email
+	 * setting to prevent the username field from showing.
+	 *
+	 * @since @@version
+	 *
+	 * @param $use_email
+	 *
+	 * @return bool
+	 */
+	function username_from_email( $use_email ){
+
+		if( job_manager_enable_registration_use_email() ) return true;
+
+		return false;
+	}
+
+	/**
+	 * WordPress wp_authenicate method override
+	 *
+	 * This method will override the core wp_authenticate method to allow the user
+	 * to login using their email address.
+	 *
+	 *
+	 * @since @@version
+	 *
+	 * @param $user
+	 * @param $username
+	 * @param $password
+	 *
+	 * @return false|\WP_Error|\WP_User
+	 */
 	function wp_authenticate( $user, $username, $password ) {
 
 		if( is_a( $user, 'WP_User' ) ) return $user;
@@ -140,6 +175,27 @@ class WP_Job_Manager_Registration_Use_Email {
 				'class' => 'job_manager_registration_use_email_custom_username_label'
 			)
 		);
+
+		// Check if we need to remove the Generate Username From Email setting
+		if( job_manager_enable_registration_use_email() ){
+			// Should normally be position 2 in array
+			if( $settings['job_submission'][1][2]['name'] === 'job_manager_generate_username_from_email' ) {
+				unset($settings['job_submission'][1][2]);
+			} else {
+				// If it's not 2 in the array, search through array for position of setting
+				$array_pos = 0;
+				foreach( $settings['job_submission'][1] as $setting ) {
+
+					if( $setting['name'] === 'job_manager_generate_username_from_email' ){
+						unset($settings['job_submission'][1][$array_pos] );
+						break;
+					}
+
+					$array_pos++;
+				}
+
+			}
+		}
 
 		// Get all settings before index 1 in array
 		$settings_before = array_slice( $settings['job_submission'][1], 0, 1 );
