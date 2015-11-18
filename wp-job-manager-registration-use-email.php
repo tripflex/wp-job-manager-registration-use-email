@@ -33,11 +33,13 @@ class WP_Job_Manager_Registration_Use_Email {
 	public function __construct() {
 		add_action( 'admin_notices', array( $this, 'activate' ) );
 		add_filter( 'job_manager_settings', array( $this, 'settings' ) );
+		add_filter( 'resume_manager_settings', array( $this, 'resume_settings' ) );
 		add_filter( 'job_manager_create_account_data', array( $this,  'change_username') );
 		add_filter( 'register_form_fields', array($this, 'register_form_fields'), 9999 );
 		add_filter( 'gettext', array( $this, 'change_username_label' ) );
 		add_filter( 'plugin_row_meta', array( $this, 'add_plugin_row_meta'), 10, 4 );
 		add_filter( 'job_manager_generate_username_from_email', array( $this, 'username_from_email' ) );
+		add_filter( 'resume_manager_generate_username_from_email', array( $this, 'username_from_email' ) );
 
 		remove_filter( 'authenticate', 'wp_authenticate_username_password', 20, 3 );
 		add_filter( 'authenticate', array( $this, 'wp_authenticate' ), 20, 3 );
@@ -140,6 +142,46 @@ class WP_Job_Manager_Registration_Use_Email {
 		}
 
 		return $plugin_meta;
+	}
+
+	/**
+	 * Handle Resume Addon Settings
+	 *
+	 * This method removes the setting to enable Generate Username from Email if
+	 * the registration use email is enabled.
+	 *
+	 *
+	 * @since @@version
+	 *
+	 * @param $settings
+	 *
+	 * @return mixed
+	 */
+	function resume_settings( $settings ){
+
+		// Check if we need to remove the Generate Username From Email setting
+		if( job_manager_enable_registration_use_email() ) {
+			// Should normally be position 2 in array
+			if( $settings['resume_submission'][1][2]['name'] === 'resume_manager_generate_username_from_email' ) {
+				unset($settings['resume_submission'][1][2]);
+			} else {
+				// If it's not 2 in the array, search through array for position of setting
+				$array_pos = 0;
+				foreach( $settings['resume_submission'][1] as $setting ) {
+
+					if( $setting['name'] === 'resume_manager_generate_username_from_email' ) {
+						unset($settings['resume_submission'][1][ $array_pos ]);
+						break;
+					}
+
+					$array_pos ++;
+				}
+
+			}
+		}
+
+		return $settings;
+
 	}
 
 	/**
