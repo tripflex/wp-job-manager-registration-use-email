@@ -3,7 +3,7 @@ Contributors: tripflex, fris
 Donate link: http://smyl.es/donate/
 Tags: wp job manager, job manager, registration, email, user, jobify, job manager, login, login label, tripflex, email login
 Requires at least: 3.8
-Tested up to: 4.3.1
+Tested up to: 4.4
 Stable tag: 1.3.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
